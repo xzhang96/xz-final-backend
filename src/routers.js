@@ -1,16 +1,13 @@
 const { response } = require('express');
 const express = require('express');
+const AuthenticationController = require('./controller/AuthenticationController')
+const AuthenticationControllerPolicy = require('./policy/AuthenticationControllerPolicy')
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
-    return res.status(200).send("Hello");
-})
-
-router.post('/register', (req, res) => {
-    res.send({
-        message: `Hello, ${req.body.email}! Your user was registered!`
-    })
-})
+router.post('/register', 
+    AuthenticationControllerPolicy.register,
+    AuthenticationController.register
+)
 
 module.exports = router;
