@@ -8,5 +8,8 @@ module.exports = {
       host: process.env.HOST || 'localhost',
       port: process.env.DB_PORT || '3306'
     }
+  },
+  authentication : {
+    jwtSecret: process.env.JWT_SECRET || 'secret'
   }
 }

@@ -16,9 +16,12 @@
     "url": "https://github.com/xzhang96/xz-final-backend/issues"
   },
   "dependencies": {
+    "bcrypt": "^5.0.0",
+    "bluebird": "^3.7.2",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "joi": "^17.3.0",
+    "jsonwebtoken": "^8.5.1",
     "mysql2": "^2.2.5",
     "sequelize": "^6.3.5"
   }
