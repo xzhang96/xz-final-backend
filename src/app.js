@@ -11,7 +11,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use('/', router)
 
 
-sequelize.sync()
+sequelize.sync({force: false})
     .then(() => {
         const port = process.env.PORT || 8081;
         app.listen(port, () => {
