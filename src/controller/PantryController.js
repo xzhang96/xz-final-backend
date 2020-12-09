@@ -2,8 +2,10 @@ const {Pantry} = require('../model')
 
 module.exports = {
   async getPantry (req, res) {
-    let user_id = req.params.user_id
     try {
+      const user_id = req.user.id
+      console.log("getpantry")
+      console.log(user_id)
       const pantry = await Pantry.findAll({
         where: {UserId: user_id}
       })
@@ -23,10 +25,11 @@ module.exports = {
     }
   },
   async removeItem (req, res) {
-    const item_id = req.params.item_id;
     try {
+      const user_id = req.user.id
+      const item_id = req.params.item_id;
       const item = await Pantry.findOne({
-        where: {id: item_id}
+        where: {id: item_id, UserId: user_id}
       })
       if (!item) {
         return res.status(200).send("success")
@@ -39,8 +42,10 @@ module.exports = {
   },
   async editItem (req, res) {
     try {
+      const user_id = req.user.id
+      const item_id = req.params.item_id;
       await Pantry.update(req.body, {
-        where: {id: req.params.item_id}
+        where: {id: item_id, UserId: user_id}
       })
       res.send(req.body)
     } catch (error) {
