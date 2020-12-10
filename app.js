@@ -1,14 +1,14 @@
 const express = require('express');
 const cors = require('cors');
-const router = require('./routers');
-const {sequelize} = require('./model')
+const router = require('./src/routers');
+const {sequelize} = require('./src/model')
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-require('./passport')
+require('./src/passport')
 app.use('/', router)
 
 
