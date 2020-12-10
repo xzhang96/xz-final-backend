@@ -11,15 +11,8 @@
     "example",
     "heroku"
   ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/xzhang96/xz-final-backend.git"
-  },
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/xzhang96/xz-final-backend/issues"
-  },
   "dependencies": {
     "bcrypt": "^5.0.0",
     "bluebird": "^3.7.2",
