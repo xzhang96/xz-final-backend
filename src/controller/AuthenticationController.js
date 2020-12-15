@@ -53,4 +53,24 @@ module.exports = {
       })
     }
   },
+  async editProfile (req, res) {
+    try {
+      const {firstName, lastName, email, password} = req.body
+      const user = req.user
+      user.firstName = firstName
+      user.lastName = lastName
+      user.email = email
+      user.password = password
+      const updated = await user.save()
+      res.status(200).send({
+        user: updated.dataValues,
+        token: jwtSignUser(updated.dataValues)
+      })
+    } catch (error) {
+      console.log(error)
+      res.status(500).send({
+        error: 'An error has occured, failed to edit profile'
+      })
+    }
+  }
 }

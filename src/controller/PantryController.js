@@ -4,8 +4,6 @@ module.exports = {
   async getPantry (req, res) {
     try {
       const user_id = req.user.id
-      console.log("getpantry")
-      console.log(user_id)
       const pantry = await Pantry.findAll({
         where: {UserId: user_id}
       })

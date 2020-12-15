@@ -3,6 +3,7 @@ module.exports = (sequelize, DataTypes) => {
     name: DataTypes.STRING,
     category: DataTypes.STRING,
     quantity: DataTypes.INTEGER,
+    unit: DataTypes.STRING,
   })
 
   Pantry.associate = function (model) {

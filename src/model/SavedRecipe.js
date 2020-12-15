@@ -1,14 +1,14 @@
 module.exports = (sequelize, DataTypes) => {
-  const Recipe = sequelize.define('Recipe', {
+  const SavedRecipe = sequelize.define('SavedRecipe', {
     title: DataTypes.STRING,
     spoon_id: DataTypes.INTEGER,
     calories: DataTypes.INTEGER,
     image: DataTypes.STRING,
   })
 
-  Recipe.associate = function (model) {
-    Recipe.belongsTo(model.User)
+  SavedRecipe.associate = function (model) {
+    SavedRecipe.belongsTo(model.User)
   }
 
-  return Recipe
+  return SavedRecipe
 }

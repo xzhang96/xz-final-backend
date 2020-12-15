@@ -1,24 +1,27 @@
-const { response } = require('express');
 const express = require('express');
 const AuthenticationController = require('./controller/AuthenticationController')
 const AuthenticationControllerPolicy = require('./policy/AuthenticationControllerPolicy')
 const PantryController = require('./controller/PantryController')
 const isAuthenticated = require('./policy/isAuthenticated');
-const RecipeController = require('./controller/RecipeController');
+const SavedRecipeController = require('./controller/SavedRecipeController');
+const SearchController = require('./controller/SearchController')
 
 const router = express.Router();
 
 router.post('/register', 
     AuthenticationControllerPolicy.register,
-    AuthenticationController.register
-)
+    AuthenticationController.register)
 router.post('/login',
     AuthenticationController.login)
+router.put('/edit_profile',
+    isAuthenticated,
+    AuthenticationController.editProfile)
 
 router.get('/getPantry',
     isAuthenticated,
     PantryController.getPantry)
 router.post('/pantry/add_item',
+    isAuthenticated,
     PantryController.addItem)
 router.delete('/pantry/remove_item/:item_id',
     isAuthenticated,
@@ -27,15 +30,23 @@ router.put('/pantry/edit_item/:item_id',
     isAuthenticated,
     PantryController.editItem)
 
-router.get('/getRecipes',
+router.get('/getSavedRecipes',
     isAuthenticated,
-    RecipeController.getRecipes)
-router.post('/recipe/add_recipe',
-    RecipeController.addRecipe)
+    SavedRecipeController.getSavedRecipes)
+router.post('/recipe/save_recipe',
+    isAuthenticated,
+    SavedRecipeController.saveRecipe)
 router.delete('/recipe/remove_recipe/:recipe_id',
     isAuthenticated,
-    RecipeController.removeRecipe)
+    SavedRecipeController.removeRecipe)
 
-router.get('/searchRecipes', )
+router.get('/searchRecipes',
+    SearchController.searchRecipes)
+router.get('/searchRecipesByIngredients',
+    SearchController.searchRecipesByIngredients)
+router.get('/getRecipesById/:recipe_id',
+    SearchController.getRecipesById)
+router.get('/getInstructionsById/:recipe_id',
+    SearchController.getInstructionById)
 
 module.exports = router;

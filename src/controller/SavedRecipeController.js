@@ -1,7 +1,7 @@
 const {Recipe} = require('../model')
 
 module.exports = {
-  async getRecipes (req, res) {
+  async getSavedRecipes (req, res) {
     try {
       const user_id = req.user.id
       const recipes = await Recipe.findAll({
@@ -12,7 +12,7 @@ module.exports = {
       res.status(500)
     }
   },
-  async addRecipe (req, res) {
+  async saveRecipe (req, res) {
     try {
       const recipe = await Recipe.create(req.body)
       res.send(recipe)
