@@ -23,7 +23,6 @@ module.exports = {
     try {
       const search_string = req.query
       search_string.apiKey = API_KEY
-      search_string.number = 3
       const response = await axios.get('https://api.spoonacular.com/recipes/findByIngredients', {params: search_string})
       if (response.data.length === 0) {
         return res.status(404).send({
