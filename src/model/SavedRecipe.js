@@ -1,7 +1,7 @@
 module.exports = (sequelize, DataTypes) => {
   const SavedRecipe = sequelize.define('SavedRecipe', {
     title: DataTypes.STRING,
-    spoon_id: DataTypes.INTEGER,
+    spoonId: DataTypes.INTEGER,
     calories: DataTypes.INTEGER,
     image: DataTypes.STRING,
   })

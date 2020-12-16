@@ -13,30 +13,30 @@ router.post('/register',
     AuthenticationController.register)
 router.post('/login',
     AuthenticationController.login)
-router.put('/edit_profile',
+router.put('/editProfile',
     isAuthenticated,
     AuthenticationController.editProfile)
 
 router.get('/getPantry',
     isAuthenticated,
     PantryController.getPantry)
-router.post('/pantry/add_item',
+router.post('/pantry/addItem',
     isAuthenticated,
     PantryController.addItem)
-router.delete('/pantry/remove_item/:item_id',
+router.delete('/pantry/removeItem/:item_id',
     isAuthenticated,
     PantryController.removeItem)
-router.put('/pantry/edit_item/:item_id',
+router.put('/pantry/editItem/:item_id',
     isAuthenticated,
     PantryController.editItem)
 
-router.get('/getSavedRecipes',
+router.get('/getRecipes',
     isAuthenticated,
     SavedRecipeController.getSavedRecipes)
-router.post('/recipe/save_recipe',
+router.post('/recipe/saveRecipe',
     isAuthenticated,
     SavedRecipeController.saveRecipe)
-router.delete('/recipe/remove_recipe/:recipe_id',
+router.delete('/recipe/removeRecipe/:recipe_id',
     isAuthenticated,
     SavedRecipeController.removeRecipe)
 

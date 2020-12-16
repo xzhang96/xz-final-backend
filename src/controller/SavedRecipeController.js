@@ -1,10 +1,11 @@
-const {Recipe} = require('../model')
+const {SavedRecipe} = require('../model')
 
 module.exports = {
   async getSavedRecipes (req, res) {
     try {
       const user_id = req.user.id
-      const recipes = await Recipe.findAll({
+      console.log(user_id)
+      const recipes = await SavedRecipe.findAll({
         where: {UserId: user_id}
       })
       res.send(recipes)
@@ -14,9 +15,10 @@ module.exports = {
   },
   async saveRecipe (req, res) {
     try {
-      const recipe = await Recipe.create(req.body)
+      const recipe = await SavedRecipe.create(req.body)
       res.send(recipe)
     } catch (error) {
+      console.log(error)
       res.status(500).send({
         error: "An error has occured, failed to add recipe"
       })
@@ -26,7 +28,7 @@ module.exports = {
     try {
       const user_id = req.user.id
       const recipe_id = req.params.recipe_id;
-      const recipe = await Pantry.findOne({
+      const recipe = await SavedRecipe.findOne({
         where: {id: recipe_id, UserId: user_id}
       })
       if (!recipe) {
